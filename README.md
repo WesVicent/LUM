@@ -1,4 +1,4 @@
-# UML Diagram Editor
+# LUM
 
 A UML class diagram editor built with TypeScript and D3.js. Create class diagrams based on a simple JSON entry, visualize/edit it.
 
