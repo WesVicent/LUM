@@ -32,7 +32,7 @@ export default class RenderService {
             .style("stroke-width", 1);
     }
 
-    public drawPrimitiveText(x: number, y: number, text: string): D3TextElement {
+    public drawPrimitiveText(x: number, y: number, fontSize: number, text: string): D3TextElement {
         const textElement = this.context.append('text')
             .attr('x', 0)
             .attr('y', y)
@@ -40,7 +40,7 @@ export default class RenderService {
             .attr('dominant-baseline', 'hanging')
             .attr('fill', '#3d3d3dff')
             .attr('font-family', 'sans-serif')
-            .attr('font-size', 35);
+            .attr('font-size', fontSize);
 
             textElement.append('tspan')
             .attr('x', x)
@@ -56,7 +56,9 @@ export default class RenderService {
         return new LumCard(this.drawPrimitiveRect(x, y, width, height), this.drawPrimitiveLine(x, y + height / 5, width));
     } 
     
-    public drawText(x: number, y: number, text: string): LumText {
-        return new LumText(x, y, text, this.drawPrimitiveText(x, y, text));
+    public drawText(x: number, y: number, areaWidth: number, areaHeight: number, fontSize: number, text: string): LumText {
+        const lumText = new LumText(x, y, areaWidth, areaHeight, fontSize, text, this);
+
+        return lumText;
     }
 }

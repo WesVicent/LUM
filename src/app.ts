@@ -14,7 +14,8 @@ class App {
         const renderContext = new RenderContext(svg, contextWidth, contextHeight);
         const renderService: RenderService = new RenderService(renderContext);
 
-        const WIDHT = 350;
+        const FONT_SIZE = 18;
+        const WIDHT = 200;
         const HEIGHT = WIDHT / 2;
 
         const X_POS = renderContext.hCenter - WIDHT / 2;
@@ -22,12 +23,11 @@ class App {
  
         renderService.drawCard(X_POS, Y_POS, WIDHT, HEIGHT);
 
-        const text = renderService.drawText(X_POS, Y_POS, '123456789-12345678');
-        text.append('123456789-12345678');
-        text.append('123456789-12345678');
-        text.append('123456789-12345678');
-        text.append('123456789-12345678');
-    }
+        let stringText = '123456789-12345678';
+
+        const text = renderService.drawText(X_POS, Y_POS, WIDHT, HEIGHT, FONT_SIZE, `${stringText}${stringText}${stringText}${stringText}${stringText}`);
+
+   }
 }
 
 // When the DOM is loaded
