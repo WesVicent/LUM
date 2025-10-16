@@ -22,7 +22,10 @@ export default class LumCard {
 
         const dragHandler = d3.drag<SVGGElement, unknown, d3.SubjectPosition>()
             .on('start', function (event: d3.D3DragEvent<SVGGElement, unknown, d3.SubjectPosition>) {
-                d3.select(this).attr("transform", `translate(${event.x - areaWidth / 2}, ${event.y - areaHeight / 2})`);
+                x += event.x;
+                y += event.y;
+                
+                d3.select(this).attr("transform", `translate(${x}, ${y})`);
 
                 rect.attr('stroke-width', "2")
                     .attr('stroke', "#096bc7ff");
@@ -32,7 +35,10 @@ export default class LumCard {
 
             })
             .on('drag', function (event: d3.D3DragEvent<SVGGElement, unknown, d3.SubjectPosition>) {
-                d3.select(this).attr("transform", `translate(${event.x - areaWidth / 2}, ${event.y - areaHeight / 2})`);
+                x += event.x;
+                y += event.y;
+                
+                d3.select(this).attr("transform", `translate(${x}, ${y})`);
 
                 rect.attr('stroke-width', "2")
                     .attr('stroke', "#096bc7ff");
@@ -41,7 +47,10 @@ export default class LumCard {
                     .style("stroke", "#096bc7ff");
             })
             .on('end', function (event: d3.D3DragEvent<SVGGElement, unknown, d3.SubjectPosition>) {
-                d3.select(this).attr("transform", `translate(${event.x - areaWidth / 2}, ${event.y - areaHeight / 2})`);
+                x += event.x;
+                y += event.y;
+                
+                d3.select(this).attr("transform", `translate(${x}, ${y})`);
                 rect.attr('stroke-width', "1")
                     .attr('stroke', "#3d3d3dff");
 
