@@ -11,7 +11,7 @@ export default class LumText {
     private containerWidth = 0;
     private containerHeight = 0;
 
-    public constructor(x: number, y: number, areaWidth: number, areaHeight: number, fontSize: number, text: string, renderService: RenderService) {
+    public constructor(x: number, y: number, areaWidth: number, areaHeight: number, fontSize: number, text: string, renderService: RenderService, group?: D3GElement) {
         /* 
             An area width of 350 fits 18 chars with size of 35.
 
@@ -30,7 +30,7 @@ export default class LumText {
         this.text = text;
         this.containerWidth = areaWidth;
         this.containerHeight = areaHeight;
-        this.textElement = renderService.drawPrimitiveText(x, y, fontSize, text.slice(0, this.charPerLine));
+        this.textElement = renderService.drawPrimitiveText(x, y, fontSize, text.slice(0, this.charPerLine), group);
 
 
         if(text.length > this.charPerLine) {

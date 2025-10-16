@@ -2,7 +2,7 @@ import * as d3 from 'd3';
 import RenderService from './services/render/RenderService'
 import RenderContext from './services/render/RenderContext';
 
-class App {
+class Lum {
     public static init() {
         const SVG_ID = 'diagram';
         const svg: D3SVGElement = d3.select(`#${SVG_ID}`);
@@ -14,23 +14,18 @@ class App {
         const renderContext = new RenderContext(svg, contextWidth, contextHeight);
         const renderService: RenderService = new RenderService(renderContext);
 
-        const FONT_SIZE = 18;
         const WIDHT = 200;
         const HEIGHT = WIDHT / 2;
 
         const X_POS = renderContext.hCenter - WIDHT / 2;
         const Y_POS = renderContext.vCenter - HEIGHT / 2;
- 
+
         renderService.drawCard(X_POS, Y_POS, WIDHT, HEIGHT);
-
-        let stringText = '123456789-12345678';
-
-        const text = renderService.drawText(X_POS, Y_POS, WIDHT, HEIGHT, FONT_SIZE, `${stringText}${stringText}${stringText}${stringText}${stringText}`);
-
-   }
+        renderService.drawCard(X_POS + 220, Y_POS, WIDHT, HEIGHT);
+    }
 }
 
 // When the DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    App.init();
+    Lum.init();
 });

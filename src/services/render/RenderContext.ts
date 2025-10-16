@@ -17,4 +17,8 @@ export default class RenderContext {
     public append(name: string): D3BaseType {
         return this.svg.append(name);
     }
+
+    public getCore(): D3SVGElement {
+        return this.svg;
+    }
 }

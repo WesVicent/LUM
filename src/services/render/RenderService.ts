@@ -10,9 +10,19 @@ export default class RenderService {
     }
 
     /////////////////////////////////////////////////////////////////////////////////////
-            //////////////////////////  PRIMITIVES  ///////////////////////////////      
-    public drawPrimitiveRect(x: number, y: number, width: number, height: number): D3RectElement {
-        return this.context.append('rect')
+    //////////////////////////  PRIMITIVES  ///////////////////////////////      
+    public createPrimitiveGroup(x: number, y: number, width: number, height: number): D3GElement {
+        return this.context.append('g')
+        .attr("transform", `translate(${x}, ${y})`)
+        .attr('width', width)
+        .attr('height', height);
+    }
+
+    public drawPrimitiveRect(x: number, y: number, width: number, height: number, group?: D3GElement): D3RectElement {
+        const node = group ?? this.context.getCore();
+
+        const rect = node
+            .append('rect')
             .attr('x', x)
             .attr('y', y)
             .attr('width', width)
@@ -20,20 +30,28 @@ export default class RenderService {
             .attr('fill', '#ffffff')
             .attr('stroke', '#3d3d3dff')
             .attr('stroke-width', 1);
+
+        return rect;
     }
 
-    public drawPrimitiveLine(x: number, y: number, width: number): D3LineElement {
-        return this.context.append('line')
+    public drawPrimitiveLine(x: number, y: number, width: number, group?: D3GElement): D3LineElement {
+        const node = group ?? this.context.getCore();
+
+        const line = node.append('line')
             .attr('x1', x)
             .attr('y1', y)
             .attr('x2', width + x)
             .attr('y2', y)
-            .style("stroke", "#555555")
+            .style("stroke", "#3d3d3dff")
             .style("stroke-width", 1);
+
+        return line;
     }
 
-    public drawPrimitiveText(x: number, y: number, fontSize: number, text: string): D3TextElement {
-        const textElement = this.context.append('text')
+    public drawPrimitiveText(x: number, y: number, fontSize: number, text: string, group?: D3GElement): D3TextElement {
+        const node = group ?? this.context.getCore();
+
+        const textElement = node.append('text')
             .attr('x', 0)
             .attr('y', y)
             .attr('text-anchor', 'start')
@@ -42,22 +60,22 @@ export default class RenderService {
             .attr('font-family', 'sans-serif')
             .attr('font-size', fontSize);
 
-            textElement.append('tspan')
+        textElement.append('tspan')
             .attr('x', x)
             .attr('dy', '0.15em')
             .text(text);
 
-            return textElement;
+        return textElement;
     }
-            //////////////////////////  PRIMITIVES  ///////////////////////////////      
+    //////////////////////////  PRIMITIVES  ///////////////////////////////      
     /////////////////////////////////////////////////////////////////////////////////////
 
     public drawCard(x: number, y: number, width: number, height: number): LumCard {
-        return new LumCard(this.drawPrimitiveRect(x, y, width, height), this.drawPrimitiveLine(x, y + height / 5, width));
-    } 
-    
-    public drawText(x: number, y: number, areaWidth: number, areaHeight: number, fontSize: number, text: string): LumText {
-        const lumText = new LumText(x, y, areaWidth, areaHeight, fontSize, text, this);
+        return new LumCard(x, y, width, height, this);
+    }
+
+    public drawText(x: number, y: number, areaWidth: number, areaHeight: number, fontSize: number, text: string, group?: D3GElement): LumText {
+        const lumText = new LumText(x, y, areaWidth, areaHeight, fontSize, text, this, group);
 
         return lumText;
     }
