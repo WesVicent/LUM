@@ -14,8 +14,8 @@ export default class RenderService {
     public createPrimitiveGroup(x: number, y: number, width: number, height: number): D3GElement {
         return this.context.append('g')
         .attr("transform", `translate(${x}, ${y})`)
-        .attr('width', width)
-        .attr('height', height);
+        .attr('width', width)       // Maybe doesn't matter
+        .attr('height', height);    // Maybe doesn't matter
     }
 
     public drawPrimitiveRect(x: number, y: number, width: number, height: number, group?: D3GElement): D3RectElement {
