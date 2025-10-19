@@ -1,9 +1,10 @@
 import LumCard from "../../component/render/LumCard";
 import LumText from "../../component/render/LumText";
+import ResizingControll from "../../component/render/working_bench/ResizingControll";
 import RenderContext from "./RenderContext";
 
 export default class RenderService {
-    private context: RenderContext;
+    public readonly context: RenderContext;
 
     public constructor(context: RenderContext) {
         this.context = context;
@@ -67,8 +68,11 @@ export default class RenderService {
 
         return textElement;
     }
-    //////////////////////////  PRIMITIVES  ///////////////////////////////      
     /////////////////////////////////////////////////////////////////////////////////////
+
+    public renderWorkingBenchControlls(): void {
+        const resizingControll = new ResizingControll(10, 10, 200, 200, this, new LumCard(10, 10, 200, 200, this));
+    }
 
     public drawCard(x: number, y: number, width: number, height: number): LumCard {
         return new LumCard(x, y, width, height, this);

@@ -20,6 +20,8 @@ class Lum {
         const X_POS = renderContext.hCenter - WIDHT / 2;
         const Y_POS = renderContext.vCenter - HEIGHT / 2;
 
+        renderService.renderWorkingBenchControlls();
+
         renderService.drawCard(X_POS, Y_POS, WIDHT, HEIGHT);
         renderService.drawCard(X_POS + 220, Y_POS, WIDHT, HEIGHT);
     }

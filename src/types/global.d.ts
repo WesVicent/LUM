@@ -9,7 +9,7 @@ type D3LineElement = d3.Selection<SVGLineElement, unknown, HTMLElement, any>;
 type D3TextElement = d3.Selection<SVGTextElement, unknown, HTMLElement, any>;
 type D3TextSpanElement = d3.Selection<SVGTSpanElement, unknown, HTMLElement, any>;
 
-type D3DragRectBehavior = d3.DragBehavior<SVGRectElement, unknown, d3.SubjectPosition>;
+type D3DragRectBehavior = d3.DragBehavior<SVGRectElement, unknown, void>;
 type D3DragRectEvent = d3.D3DragEvent<SVGRectElement, unknown, void>;
 type D3DragRectFunction = (selection: D3RectElement) => void;
 
