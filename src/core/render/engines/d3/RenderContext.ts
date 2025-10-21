@@ -14,7 +14,7 @@ export default class RenderContext {
         this.vCenter = height /2;
     }
 
-    public append(name: string): D3BaseType {
+    public append(name: string): D3BaseTypeSelection {
         return this.svg.append(name);
     }
 

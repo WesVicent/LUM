@@ -1,9 +1,11 @@
 import * as d3 from "d3";
-import RenderService from "../../../services/render/RenderService";
+import RenderService from "../engines/d3/RenderService";
 import IdAndPositions from "../interfaces/IdAndPositions";
-import LumCard from "../LumCard";
+import LumCard from "../entities/LumCard";
+import Controller from "./ControllerBase";
+import { EventBus } from "../EventBus";
 
-export default class ResizingControll {
+export default class ResizingControll extends Controller {
     private readonly renderService: RenderService;
 
     private x: number;
@@ -32,7 +34,9 @@ export default class ResizingControll {
         bottomRight: 'bottomRight',
     };
 
-    constructor(x: number, y: number, width: number, height: number, renderService: RenderService, card: LumCard) {
+    constructor(x: number, y: number, width: number, height: number, renderService: RenderService, card: LumCard, eventBus: EventBus) {
+        super(eventBus);
+
         this.renderService = renderService;
         this.width = width;
         this.height = height;
@@ -45,6 +49,8 @@ export default class ResizingControll {
         this.createResizingNodes();
         this.setupResizeHandler();
     }
+
+    protected listenToEvents(): void {}
 
     private createNodePositionsArray(x: number, y: number, width: number, height: number): Array<IdAndPositions> {
         return [

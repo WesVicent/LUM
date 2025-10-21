@@ -1,6 +1,6 @@
-import LumCard from "../../component/render/LumCard";
-import LumText from "../../component/render/LumText";
-import ResizingControll from "../../component/render/working_bench/ResizingControll";
+// import LumCard from "../../entities/LumCard";
+// import LumText from "../../entities/LumText";
+// import ResizingControll from "../../controllers/ResizingControll";
 import RenderContext from "./RenderContext";
 
 export default class RenderService {
@@ -70,17 +70,7 @@ export default class RenderService {
     }
     /////////////////////////////////////////////////////////////////////////////////////
 
-    public renderWorkingBenchControlls(): void {
-        const resizingControll = new ResizingControll(10, 10, 200, 200, this, new LumCard(10, 10, 200, 200, this));
-    }
-
-    public drawCard(x: number, y: number, width: number, height: number): LumCard {
-        return new LumCard(x, y, width, height, this);
-    }
-
-    public drawText(x: number, y: number, areaWidth: number, areaHeight: number, fontSize: number, text: string, group?: D3GElement): LumText {
-        const lumText = new LumText(x, y, areaWidth, areaHeight, fontSize, text, this, group);
-
-        return lumText;
+    public select(selection: string): D3BaseTypeSelection {
+        return this.context.getCore().select(selection);
     }
 }
